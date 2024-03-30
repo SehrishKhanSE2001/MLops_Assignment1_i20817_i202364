@@ -10,7 +10,7 @@ data = pd.read_csv('data.csv')
 X = data['Temperature'].values.reshape(-1, 1)  # Features (temperature)
 y = data['Ice Cream Profits'].values  # Target variable (profits)
 
-# Creating a linear regression model
+# Creating a linear regression modelll
 model = LinearRegression()
 
 # Training the model
