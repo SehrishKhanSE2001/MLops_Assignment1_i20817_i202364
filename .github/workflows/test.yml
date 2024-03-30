@@ -28,7 +28,15 @@ jobs:
       - name: Merge to master and deploy
         if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'test'
         run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
           git checkout master
           git merge --no-ff ${{ github.event.pull_request.head.ref }}
+          git push origin master
           # Trigger Jenkins job for containerization and deployment to Docker Hub
           # Insert Jenkins job trigger command here
+
+      - name: Create pull request to master
+        if: success()
+        run: |
+          gh pr create --base master --head test --title "Merge changes to master"
