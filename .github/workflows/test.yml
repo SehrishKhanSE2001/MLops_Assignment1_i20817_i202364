@@ -23,7 +23,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run unit tests
-        run: python -m unittest Assignment1/test.py
+        run: python -m unittest test.py
 
       - name: Merge to master and deploy
         if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'test'
