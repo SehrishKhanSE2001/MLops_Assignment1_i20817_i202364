@@ -3,6 +3,8 @@
 from sklearn.linear_model import LinearRegression
 
 class LinearRegressionModel:
+
+    
     def __init__(self):
         self.model = LinearRegression()
 

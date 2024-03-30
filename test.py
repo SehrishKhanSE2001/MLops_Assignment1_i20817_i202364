@@ -1,5 +1,8 @@
+# test.py: Unit Testing and Deployment
+
 import unittest
 from model import LinearRegressionModel
+
 
 class TestLinearRegressionModel(unittest.TestCase):
     def setUp(self):
@@ -12,8 +15,6 @@ class TestLinearRegressionModel(unittest.TestCase):
         self.assertIsNotNone(self.model.model)
         self.assertEqual(len(self.model.model.coef_), 1)  # Check if model coefficients are of expected length
 
-    
-
     def test_model_prediction_range(self):
         self.model.fit(self.X_train, self.y_train)
         X_test = [[39], [40], [41], [42], [43], [44], [45]]  # Including temperatures in the training range and beyond
@@ -23,6 +24,7 @@ class TestLinearRegressionModel(unittest.TestCase):
     def test_model_invalid_input(self):
         with self.assertRaises(ValueError):
             self.model.predict([[50]])  # Testing prediction with an input temperature outside the training range
+
 
 if __name__ == '__main__':
     unittest.main()
