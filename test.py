@@ -13,17 +13,17 @@ class TestLinearRegressionModel(unittest.TestCase):
     def test_model_fit(self):
         self.model.fit(self.X_train, self.y_train)
         self.assertIsNotNone(self.model.model)
-        self.assertEqual(len(self.model.model.coef_), 1)  # Check if model coefficients are of expected length
+        self.assertEqual(len(self.model.model.coef_), 1) 
 
     def test_model_prediction_range(self):
         self.model.fit(self.X_train, self.y_train)
-        X_test = [[39], [40], [41], [42], [43], [44], [45]]  # Including temperatures in the training range and beyond
+        X_test = [[39], [40], [41], [42], [43], [44], [45]]  
         predicted_profits = self.model.predict(X_test)
-        self.assertEqual(len(predicted_profits), len(X_test))  # Check if the number of predictions matches the number of test data
+        self.assertEqual(len(predicted_profits), len(X_test))  
 
     def test_model_invalid_input(self):
         with self.assertRaises(ValueError):
-            self.model.predict([[50]])  # Testing prediction with an input temperature outside the training range
+            self.model.predict([[50]]) 
 
 
 if __name__ == '__main__':
