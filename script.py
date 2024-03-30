@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # Load the dataset
 data = pd.read_csv('data.csv')
 
-# Extracting features and target variable
+# Extracting features and target variablee
 X = data['Temperature'].values.reshape(-1, 1)  # Features (temperature)
 y = data['Ice Cream Profits'].values  # Target variable (profits)
 
