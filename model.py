@@ -1,9 +1,9 @@
-# model.py
+# model.pyy
 from sklearn.linear_model import LinearRegression
 
 
 class LinearRegressionModel:
-    def __init__(self):
+    def __init__(self): 
         self.model = LinearRegression()
 
     def fit(self, X, y):
