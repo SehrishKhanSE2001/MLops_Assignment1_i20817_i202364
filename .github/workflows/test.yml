@@ -3,7 +3,7 @@ name: Unit Testing and Deployment
 on:
   pull_request:
     branches:
-      - test
+      - dev
     types: [closed]
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         run: python -m unittest test.py
 
       - name: Merge to main and deploy
-        if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'test'
+        if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'dev'
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
@@ -39,4 +39,4 @@ jobs:
       - name: Create pull request to main
         if: success()
         run: |
-          gh pr create --base main --head test --title "Merge changes to main"
+          gh pr create --base main --head dev --title "Merge changes to main"
