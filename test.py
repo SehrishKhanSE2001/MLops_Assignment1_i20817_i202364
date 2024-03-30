@@ -13,17 +13,17 @@ class TestLinearRegressionModel(unittest.TestCase):
     def test_model_fit(self):
         self.model.fit(self.X_train, self.y_train)
         self.assertIsNotNone(self.model.model)
-        self.assertEqual(len(self.model.model.coef_), 1) 
+        self.assertEqual(len(self.model.model.coef_), 1)
 
     def test_model_prediction_range(self):
         self.model.fit(self.X_train, self.y_train)
-        X_test = [[39], [40], [41], [42], [43], [44], [45]]  
+        X_test = [[39], [40], [41], [42], [43], [44], [45]]
         predicted_profits = self.model.predict(X_test)
-        self.assertEqual(len(predicted_profits), len(X_test))  
+        self.assertEqual(len(predicted_profits), len(X_test))
 
     def test_model_invalid_input(self):
         with self.assertRaises(ValueError):
-            self.model.predict([[50]]) 
+            self.model.predict([[50]])
 
 
 if __name__ == '__main__':

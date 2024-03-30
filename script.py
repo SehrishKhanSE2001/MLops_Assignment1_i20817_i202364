@@ -20,6 +20,7 @@ model.fit(X, y)
 new_temperature = 45  # Example temperature for prediction
 predicted_profit = model.predict([[new_temperature]])
 print("Predicted profit at temperature {}°C: ${:.2f}".format(new_temperature, predicted_profit[0]))
+
 # Visualizing the data and regression line
 plt.scatter(X, y, color='blue')
 plt.plot(X, model.predict(X), color='red')
