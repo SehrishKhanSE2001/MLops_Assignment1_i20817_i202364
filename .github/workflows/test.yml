@@ -3,7 +3,7 @@ name: Unit Testing and Deployment
 on:
   pull_request:
     branches:
-      - test
+      - dev
     types: [closed]
 
 jobs:
@@ -23,12 +23,20 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run unit tests
-        run: python -m unittest Assignment1/test.py
+        run: python -m unittest test.py
 
-      - name: Merge to master and deploy
-        if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'test'
+      - name: Merge to main and deploy
+        if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'dev'
         run: |
-          git checkout master
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git checkout main
           git merge --no-ff ${{ github.event.pull_request.head.ref }}
+          git push origin main
           # Trigger Jenkins job for containerization and deployment to Docker Hub
           # Insert Jenkins job trigger command here
+
+      - name: Create pull request to main
+        if: success() && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.base.ref == 'dev'
+        run: |
+          gh pr create --base main --head dev --title "Merge changes to main"
